@@ -1,6 +1,7 @@
 <template>
 
   <h2>Exercise 1</h2>
+
   <h4>Statement</h4>
   <div class="statement">
     <p>
@@ -10,26 +11,28 @@
       If anything else looks odd to you, feel free to update it for it to match best practices!
     </p>
   </div>
+
   <h4>Solution</h4>
   <div class="solution">
-
     <div class="person-wrapper">
-      <PersonCard v-for="person in people" :person="person" class="person-card" :personClick="alertBox"/>
+      <PersonCard
+        v-for="person in people"
+        :key="person._id"
+        :person="person"
+        @personClick="alertBox"
+      />
     </div>
     <div class="summary">{{people.length}} persons cards displayed</div>
-
   </div>
 
 </template>
 
 <script>
 
-  import PersonCard from './components/PersonCard';
   import people from './assets/people.json';
 
   export default {
     name: 'App',
-    components: {PersonCard},
     data() {
       return {
         people: people,
@@ -45,14 +48,6 @@
 </script>
 
 <style lang="scss">
-
-  .person-card {
-    background: #e4e4e4;
-    min-width: 100px;
-    float: left;
-    width: 300px;
-    margin: 10px;
-  }
 
   .summary {
     text-align: center;
