@@ -117,4 +117,68 @@
 
   // TODO: Add your CSS Styling here
 
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .item {
+    background-color: var(--background-3);
+    font-family: var(--font);
+    color: rgb(255, 255, 255);
+    padding: var(--item-padding);
+    margin: var(--item-margin);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    width: calc(100% / var(--items-by-row-when-screen-is-more-than-600px) - var(--item-margin) - var(--item-padding));
+
+    @media screen and (max-width: 600px) {
+      width: calc(100% / var(--items-by-row-when-screen-is-less-than-600px) - var(--item-margin) - var(--item-padding));
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: calc(100% / var(--items-by-row-when-screen-is-more-than-1024px) - var(--item-margin) - var(--item-padding));
+    }
+
+
+    .name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .eye-color {
+      display: flex;
+    }
+
+    img {
+      margin-left: 10px;
+      width: 25px;
+      height: 25px;
+    }
+
+    img.blue {
+      filter: hue-rotate(var(--eye-blue));
+    }
+    img.brown {
+      filter: hue-rotate(var(--eye-brown));
+    }
+    img.green {
+      filter: hue-rotate(var(--eye-green));
+    }
+  }
+
+  .item:nth-child(even) {
+    background-color: var(--background-2);
+  }
+
+  .item:nth-child(4n) {
+    background-color: var(--background-1);
+  }
+
 </style>
