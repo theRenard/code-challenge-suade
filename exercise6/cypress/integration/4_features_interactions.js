@@ -14,9 +14,16 @@ describe('4 - Features Interactions', () => {
       cy.get('[data-cy=cell-1-1]').contains('Adrian Burch');
     });
 
+    it('Should sort by name ascending', ()=>{
+      cy.get('[data-cy=sort-by-name]').click();
+      cy.get('[data-cy=cell-1-1]').contains('Adrian Burch');
+      cy.get('[data-cy=cell-2-1]').contains('Aida Mccarty');
+    });
+
     it('Should sort by name descending', ()=>{
       cy.get('[data-cy=sort-by-name]').click();
       cy.get('[data-cy=cell-1-1]').contains('Zimmerman Barry');
+      cy.get('[data-cy=cell-2-1]').contains('Wyatt Ingram');
     });
   });
 
