@@ -19,14 +19,19 @@
 
   export default {
     name: 'List',
+    data: function() {
+      return {
+        pagination: this.options.pagination,
+      };
+    },
     props: {
       data: {type: Array, default: ()=>[]},
-      options: {type: Object, default: ()=>({limit: 25, offset: 0})},
+      options: {type: Object, default: ()=>({pagination: {limit: 25, offset: 0}})},
     },
     computed: {
       // sort data by name
       sortedData() {
-        return this.data.sort((a, b)=>{
+        return [...this.data].sort((a, b)=>{
           if (a.name < b.name) {
             return -1;
           } else if (a.name > b.name) {
@@ -37,22 +42,22 @@
       },
       // paginate data
       paginatedData() {
-        return this.sortedData.slice(this.options.pagination.offset, this.options.pagination.offset + this.options.pagination.limit);
+        return this.sortedData.slice(this.pagination.offset, this.pagination.offset + this.pagination.limit);
       },
       // list of pages to display
       pages() {
-        return new Array(Math.ceil(this.data.length / this.options.pagination.limit))
+        return new Array(Math.ceil(this.data.length / this.pagination.limit))
           .fill()
           .map((v, i)=>i);
       },
       // currently displayed page
       currentPage() {
-        return (this.options.pagination.offset / this.options.pagination.limit);
+        return (this.pagination.offset / this.pagination.limit);
       },
     },
     methods: {
       changePage(page) {
-        this.options.pagination.offset = (page) * this.options.pagination.limit;
+        this.pagination.offset = (page) * this.pagination.limit;
       },
     },
   };
