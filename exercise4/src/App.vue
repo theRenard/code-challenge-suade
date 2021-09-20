@@ -18,12 +18,38 @@
   <h4>Solution</h4>
   <div class="solution">
     <!-- TODO: implement template here -->
+    <List
+      :data="$store.getters.people"
+      :sorting="sortByAge"
+      :filtering="filterByAge">
+      <template v-slot:default="slotProps">
+        {{ slotProps.item.age }}
+        {{ slotProps.item.name }}
+      </template>
+    </List>
   </div>
 
 </template>
 
 <script>
   // TODO: implement logic here
+  import List from './components/List';
+  import helpers from './helpers/helpers';
+
+  const {sortByAge, filterByAge} = helpers;
+
+  export default {
+    name: 'App',
+    components: {List},
+    created() {
+      this.$store.dispatch('getPeople');
+    },
+    methods: {
+      sortByAge,
+      filterByAge,
+    },
+  };
+
 </script>
 
 <style lang="scss">

@@ -4,6 +4,11 @@ export default new Vuex.Store({
   state: {
     people: [],
   },
+  getters: {
+    // return a list of people aged from 25 to 35 years old, from the youngest to the oldest
+    people: (state) => state.people.filter((person) => person.age >= 25 && person.age <= 35),
+
+  },
   mutations: {
     savePeople(state, people) {
       state.people = people;
